@@ -6,6 +6,9 @@
   border-radius: 8px;
 
   position: relative;
+
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .sprite_movement {
@@ -24,12 +27,12 @@
     border-radius: 8px 0 0 0;
   }
 
-  .stop {
+  .reset {
     background-color: red;
   }
 
   .run,
-  .stop {
+  .reset {
     &:hover {
       opacity: 0.7;
     }
@@ -51,9 +54,11 @@
     border-radius: 7px;
     margin-bottom: 5px;
     display: none;
+    background-color: white;
   }
 
   .think {
+    background-color: white;
     width: 10px;
     height: 10px;
     border-radius: 50%;

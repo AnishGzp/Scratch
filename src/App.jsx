@@ -60,8 +60,44 @@ function App() {
   const [track, setTrack] = useState("");
   const [trackVolume, setTrackVolume] = useState();
 
+  // Sprite contrl useState
+  const [imgPath, setImgPath] = useState("sprite");
+  const [bgPath, setBgPath] = useState("none");
+
   const [codeToRun, setCodeToRun] = useState("");
   const [running, setRunning] = useState(false);
+
+  // Reset props
+  const reset = () => {
+    console.log("resetCalled");
+
+    setForward(0);
+    setRight(0);
+    setLeft(undefined);
+    setRandom({ x: 0, y: 0 });
+    setMove({ x: 0, y: 0 });
+    setMoveX(0);
+    setMoveY(0);
+
+    // Looks reset
+    setMsg("Hello");
+    setSizeSprite(1);
+    setDisplay(true);
+
+    // Sound useState
+    setTrack("");
+    setTrackVolume(undefined);
+
+    // Sprite control reset
+    setImgPath("sprite");
+    setBgPath("none");
+
+    const sprite = document.getElementById("sprite1");
+
+    if (sprite) {
+      sprite.style.transform = "none";
+    }
+  };
 
   useEffect(() => {
     // Motion global declaration
@@ -190,8 +226,14 @@ function App() {
           <div id="blocklyDiv"></div>
         </div>
         <div className="sprite_area">
-          <SpriteMovement onRunClicked={executeGeneratedCode} msg={msg} />
-          <SpriteControl />
+          <SpriteMovement
+            onRunClicked={executeGeneratedCode}
+            msg={msg}
+            reset={reset}
+            imgPath={imgPath}
+            bgPath={bgPath}
+          />
+          <SpriteControl setImgPath={setImgPath} setBgPath={setBgPath} />
         </div>
       </div>
     </main>

@@ -68,3 +68,7 @@ header {
 .blocklyTreeLabel {
   font-family: "Comic Neue", cursive;
 }
+
+.blocklyMainBackground {
+  /* fill: red !important; Light blue */
+}
