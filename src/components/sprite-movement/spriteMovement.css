@@ -1,0 +1,47 @@
+.sprite_movement {
+  height: 50%;
+  width: 100%;
+
+  background-color: white;
+  border-radius: 8px;
+
+  position: relative;
+}
+
+.sprite_movement {
+  button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 4px 9px;
+    margin-right: 3px;
+    color: white;
+    z-index: 2;
+  }
+
+  .run {
+    background-color: green;
+    border-radius: 8px 0 0 0;
+  }
+
+  .stop {
+    background-color: red;
+  }
+
+  .run,
+  .stop {
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.sprite_movement img {
+  width: 90px;
+  height: 90px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

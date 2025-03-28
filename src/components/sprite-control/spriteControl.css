@@ -1,0 +1,12 @@
+.sprite_control {
+  height: 50%;
+  width: 100%;
+
+  background-color: white;
+  border-radius: 8px;
+
+  position: relative;
+
+  display: grid;
+  place-content: center;
+}
