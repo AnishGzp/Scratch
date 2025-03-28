@@ -1,11 +1,11 @@
 .sprite_movement {
   height: 50%;
   width: 100%;
-
-  background-color: white;
+  background-color: #023a8e;
   border-radius: 8px;
-
+  border: 1px solid white;
   position: relative;
+  overflow: hidden;
 }
 
 .sprite_movement {
