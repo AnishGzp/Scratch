@@ -2,12 +2,10 @@ import "./spriteMovement.css";
 
 import React from "react";
 
-import { moveForward } from "../../utils/motion.js";
-
 function SpriteMovement(props) {
-  const { onRunClicked } = props;
+  console.log(props);
 
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const { onRunClicked, msg } = props;
 
   return (
     <div className="sprite_movement">
@@ -17,14 +15,13 @@ function SpriteMovement(props) {
         </button>
         <button className="stop">Stop</button>
       </div>
-      <img src="/images/sprite.svg" alt="sprite" id="sprite1" style={styles} />
+      <div className="sprite_container" id="sprite1">
+        <div className="msg">{msg}</div>
+        <div className="think"></div>
+        <img src="/images/sprite.svg" alt="sprite" />
+      </div>
     </div>
   );
 }
-
-styles = {
-  transform: `translate(${position.x}px, ${position.y}px)`,
-  transition: "transform 0.5s ease",
-};
 
 export default SpriteMovement;

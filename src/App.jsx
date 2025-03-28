@@ -13,13 +13,135 @@ import {
   defineJsGenerators,
 } from "./components/index";
 
+// Motion imports
+import {
+  moveForward,
+  turnRight,
+  turnLeft,
+  randomPosition,
+  moveTo,
+  gotoX,
+  gotoY,
+  glideRandom,
+  glidePosition,
+} from "./utils/motion.js";
+
+import {
+  hide,
+  say,
+  sayForDuration,
+  show,
+  size,
+  think,
+  thinkForDuration,
+} from "./utils/looks.js";
+
+import { playSound, setVolume } from "./utils/sound.js";
+
+// Event imports
 import { onRunClicked } from "./utils/event.js";
 
 function App() {
+  //  Motion useStates
+  const [forward, setForward] = useState(0);
+  const [right, setRight] = useState(0);
+  const [left, setLeft] = useState();
+  const [random, setRandom] = useState({ x: 0, y: 0 });
+  const [move, setMove] = useState({ x: 0, y: 0 });
+  const [moveX, setMoveX] = useState(0);
+  const [moveY, setMoveY] = useState(0);
+
+  // Looks usestates
+  const [msg, setMsg] = useState("Hello");
+  const [sizeSprite, setSizeSprite] = useState(1);
+  const [display, setDisplay] = useState(true);
+
+  // Sound useState
+  const [track, setTrack] = useState("");
+  const [trackVolume, setTrackVolume] = useState();
+
   const [codeToRun, setCodeToRun] = useState("");
+  const [running, setRunning] = useState(false);
 
   useEffect(() => {
-    window.onRunClicked = onRunClicked;
+    // Motion global declaration
+    window.moveForward = (value) => {
+      moveForward(setForward, value);
+    };
+
+    window.turnRight = (value) => {
+      turnRight(setRight, value);
+    };
+
+    window.turnLeft = (value) => {
+      turnLeft(setLeft, value);
+    };
+
+    window.randomPosition = () => {
+      randomPosition(setRandom);
+    };
+
+    window.moveTo = (x, y) => {
+      if (move.x == x && move.y == y) return;
+      moveTo(setMove, x, y);
+    };
+
+    window.gotoX = (x) => {
+      gotoX(setMoveX, x);
+    };
+
+    window.gotoY = (y) => {
+      gotoY(setMoveY, y);
+    };
+
+    window.glideRandom = (t) => {
+      glideRandom(setRandom, t);
+    };
+
+    window.glidePosition = (t, x, y) => {
+      glidePosition(setMove, t, x, y);
+    };
+
+    // Looks global declaration
+    window.sayForDuration = (message, duration) => {
+      sayForDuration(setMsg, message, duration);
+    };
+
+    window.say = (message) => {
+      say(setMsg, message);
+    };
+
+    window.think = (message) => {
+      think(setMsg, message);
+    };
+
+    window.thinkForDuration = (message, duration) => {
+      thinkForDuration(setMsg, message, duration);
+    };
+
+    window.size = (value) => {
+      size(setSizeSprite, value);
+    };
+
+    window.show = () => {
+      show(setDisplay);
+    };
+
+    window.hide = () => {
+      hide(setDisplay);
+    };
+
+    // Sound global declaration
+    window.playSound = (sound) => {
+      playSound(setTrack, sound);
+    };
+
+    window.setVolume = (value) => {
+      setVolume(setTrackVolume, value);
+    };
+
+    // Event global declaration
+    window.window.onRunClicked = () => onRunClicked(setRunning);
 
     // Define blocks and generators from external files
     defineCustomBlocks();
@@ -68,7 +190,7 @@ function App() {
           <div id="blocklyDiv"></div>
         </div>
         <div className="sprite_area">
-          <SpriteMovement onRunClicked={executeGeneratedCode} />
+          <SpriteMovement onRunClicked={executeGeneratedCode} msg={msg} />
           <SpriteControl />
         </div>
       </div>

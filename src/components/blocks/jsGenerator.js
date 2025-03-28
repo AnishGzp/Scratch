@@ -19,10 +19,7 @@ export const defineJsGenerators = () => {
   };
 
   javascriptGenerator.forBlock["random_postion"] = (block) => {
-    const randomX = Math.floor(Math.random() * 500);
-    const randomY = Math.floor(Math.random() * 500);
-
-    return `randomPosition(${randomX},${randomY});\n`;
+    return `randomPosition();\n`;
   };
 
   javascriptGenerator.forBlock["goto_position"] = (block) => {
@@ -47,7 +44,7 @@ export const defineJsGenerators = () => {
 
     const glideTime = block.getFieldValue("GLIDE");
 
-    return `glideRandom(${glideTime},${randomX},${randomY});\n`;
+    return `glideRandom(${glideTime});\n`;
   };
 
   javascriptGenerator.forBlock["glide_position"] = (block) => {
